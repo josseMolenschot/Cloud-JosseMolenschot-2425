@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Map and Devices</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Network Map</h1>
+        <img src="{{ url_for('static', filename='network_map.png') }}" alt="Network Map" class="img-fluid">
+        
+        <h2 class="mt-4">Device Inventory</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Hostname</th>
+                    <th>IP Address</th>
+                    <th>MAC Address</th>
+                    <th>Type</th>
+                    <th>Software Type</th>
+                    <th>Software Version</th>
+                    <th>Uptime</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in devices %}
+                <tr>
+                    <td>{{ device.hostname }}</td>
+                    <td>{{ device.managementIpAddress }}</td>
+                    <td>{{ device.macAddress }}</td>
+                    <td>{{ device.type }}</td>
+                    <td>{{ device.softwareType }}</td>
+                    <td>{{ device.softwareVersion }}</td>
+                    <td>{{ device.upTime }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

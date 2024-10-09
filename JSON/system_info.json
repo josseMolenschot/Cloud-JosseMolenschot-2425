@@ -1,0 +1,63 @@
+{
+    "System Information": {
+        "System": "Windows",
+        "Node Name": "LAPTOP-J5IOTJ95",
+        "Release": "10",
+        "Version": "10.0.19045",
+        "Machine": "AMD64",
+        "Processor": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel",
+        "Architecture": [
+            "64bit",
+            "WindowsPE"
+        ]
+    },
+    "CPU Information": {
+        "Physical Cores": 6,
+        "Total Cores": 12,
+        "Max Frequency": 2592.0,
+        "Min Frequency": 0.0,
+        "Current Frequency": 2592.0,
+        "CPU Usage Per Core": [
+            0.0,
+            0.0,
+            50.0,
+            33.3,
+            50.0,
+            0.0,
+            25.0,
+            33.3,
+            25.0,
+            25.0,
+            0.0,
+            0.0
+        ],
+        "Total CPU Usage": 20.9
+    },
+    "Memory Information": {
+        "Total Memory": 17050836992,
+        "Available Memory": 6226395136,
+        "Used Memory": 10824441856,
+        "Percentage": 63.5
+    },
+    "Disk Information": {
+        "C:\\": {
+            "Device": "C:\\",
+            "Mountpoint": "C:\\",
+            "File System Type": "NTFS",
+            "Total Size": 510785482752,
+            "Used": 471947120640,
+            "Free": 38838362112,
+            "Percentage": 92.4
+        },
+        "D:\\": {
+            "Device": "D:\\",
+            "Mountpoint": "D:\\",
+            "File System Type": "NTFS",
+            "Total Size": 1500300439552,
+            "Used": 678006059008,
+            "Free": 822294380544,
+            "Percentage": 45.2
+        }
+    },
+    "Network Information": {}
+}
