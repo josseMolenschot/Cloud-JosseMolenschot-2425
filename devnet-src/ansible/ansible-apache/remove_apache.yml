@@ -1,0 +1,10 @@
+- hosts: webservers
+  become: yes
+  tasks:
+    - name: Remove APACHE2
+      apt:
+        name: 
+          - apache2
+          - php
+        update_cache: yes
+        state: absent

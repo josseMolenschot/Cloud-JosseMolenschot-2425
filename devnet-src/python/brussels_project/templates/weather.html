@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brussels Weather</title>
+</head>
+<body>
+    <h1>Weather in Brussels</h1>
+
+    <h2>Today's Weather ({{ weather_info.today.date }})</h2>
+    <p>Temperature: {{ weather_info.today.temp }}°C</p>
+    <p>Description: {{ weather_info.today.description }}</p>
+
+    <h2>Tomorrow's Weather ({{ weather_info.next_day.date }})</h2>
+    <p>Temperature: {{ weather_info.next_day.temp }}°C</p>
+    <p>Description: {{ weather_info.next_day.description }}</p>
+
+    <h2>Day After Tomorrow's Weather ({{ weather_info.second_day.date }})</h2>
+    <p>Temperature: {{ weather_info.second_day.temp }}°C</p>
+    <p>Description: {{ weather_info.second_day.description }}</p>
+
+    <p><a href="/">Back to the map</a></p>
+</body>
+</html>

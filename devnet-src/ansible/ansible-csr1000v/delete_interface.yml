@@ -1,0 +1,11 @@
+---
+- name: Delete Loopback Interface to CRS1000v Router
+  hosts: network_devices
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Configure Loopback interface
+      cisco.ios.ios_config:
+        lines:
+          - no interface Loopback100
+

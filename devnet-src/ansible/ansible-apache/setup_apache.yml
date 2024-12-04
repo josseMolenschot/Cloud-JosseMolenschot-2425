@@ -1,0 +1,55 @@
+- hosts: webservers
+  become: yes
+  gather_facts: yes
+  vars:
+    apache_port: 8998
+  tasks:
+    - name: Install APACHE2 and php
+      apt:
+        name: 
+          - apache2
+          - php
+        update_cache: yes
+        state: latest
+
+    - name: Ensure apache is running
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Update ports.conf to listen on custom port
+      lineinfile:
+        path: /etc/apache2/ports.conf
+        regexp: '^Listen '
+        line: "Listen {{ apache_port }}"
+        state: present
+        backup: yes  # Creates a backup of the original file
+
+    - name: Update default virtual host to use custom port
+      lineinfile:
+        path: /etc/apache2/sites-available/000-default.conf
+        regexp: '^\s*<VirtualHost \*:'
+        line: "<VirtualHost *:{{ apache_port }}>"
+        state: present
+        backup: yes  # Creates a backup of the original file
+
+    - name: Deploy PHP web page to show date, time, and IP
+      ansible.builtin.copy:
+        src: index.php
+        dest: /var/www/html/index.php
+        owner: www-data
+        group: www-data
+        mode: '0644'
+    - name: Deploy map page
+      ansible.builtin.copy:
+        src: map.php
+        dest: /var/www/html/map.php
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Restart Apache2 to apply changes
+      service:
+        name: apache2
+        state: restarted

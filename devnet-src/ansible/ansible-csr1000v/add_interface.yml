@@ -1,0 +1,12 @@
+---
+- name: Add Loopback Interface to CRS1000v Router
+  hosts: network_devices
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Configure Loopback interface
+      cisco.ios.ios_config:
+        lines:
+          - interface Loopback100
+          - ip address 10.10.10.1 255.255.255.0
+          - no shutdown

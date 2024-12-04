@@ -1,0 +1,1 @@
+curl -X DELETE "http://library.demo.local/api/v1/books/0" -H  "accept: application/json" -H  "X-API-KEY: cisco|DE2QxC2yK_SOsdvlRfSWjTvtIewcn6KWZT7q1yX5wIE"

@@ -1,0 +1,25 @@
+---
+- name: Gather OS and interface facts from network devices
+  hosts: network_devices
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name:
+      ios_command:
+        commands:
+          - show version
+      register: version_info
+
+    - name: Display version information
+      debug:
+        var: version_info.stdout_lines
+
+    - name:
+      ios_command:
+        commands:
+          - show ip interface brief
+      register: interface_info
+
+    - name: Display IP interface information
+      debug:
+        var: interface_info.stdout_lines

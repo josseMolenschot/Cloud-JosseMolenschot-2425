@@ -1,0 +1,72 @@
+- hosts: webservers
+  become: yes
+  vars:
+    nginx_port: 8999  # Custom port for NGINX
+  tasks:
+    - name: Ensure NGINX and PHP are installed
+      apt:
+        name:
+          - nginx
+          - php-fpm
+        update_cache: yes
+        state: latest
+
+    - name: Ensure NGINX is running
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Configure NGINX default server block for PHP
+      blockinfile:
+        path: /etc/nginx/sites-available/default
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+        block: |
+          server {
+              listen {{ nginx_port }};
+              server_name localhost;
+
+              root /var/www/html;
+              index index.php index.html index.htm;
+
+              location / {
+                  try_files $uri $uri/ =404;
+              }
+
+              location ~ \.php$ {
+                  include snippets/fastcgi-php.conf;
+                  fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;  # Ensure this matches your PHP version
+                  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                  include fastcgi_params;
+              }
+
+              location ~ /\.ht {
+                  deny all;
+              }
+          }
+
+    - name: Ensure NGINX configuration is valid
+      command: nginx -t
+      register: nginx_test
+      
+
+    - name: Restart NGINX to apply changes
+      service:
+        name: nginx
+        state: restarted
+
+    - name: Deploy PHP page to show date, time, and IP
+      copy:
+        src: index.php
+        dest: /var/www/html/index.php
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Deploy map page
+      copy:
+        src: map.php
+        dest: /var/www/html/map.php
+        owner: www-data
+        group: www-data
+        mode: '0644'
