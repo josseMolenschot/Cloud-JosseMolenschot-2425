@@ -2,6 +2,10 @@
 
 ## Index
 Google doc Index page: [link](https://docs.google.com/document/d/11eB_Nn6hbAIzmPZbQq3qikNAq9rTDw79tsIYE3mMJ3I/edit?usp=sharing)
+<<<<<<< HEAD
 experiment with branch
 nieuwe toevoeging
 test
+=======
+test2
+>>>>>>> testing
